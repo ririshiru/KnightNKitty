@@ -781,3 +781,25 @@ button:hover {
         opacity: 1;
     }
 }
+
+/* Cursor Cat */
+#cursor-cat {
+    position: fixed;
+    width: 40px;
+    /* Adjust size as needed */
+    height: auto;
+    pointer-events: none;
+    /* Don't block clicks */
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+    image-rendering: pixelated;
+    /* Keep pixel art crisp */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+#cursor-cat.active {
+    opacity: 1;
+}
