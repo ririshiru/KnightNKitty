@@ -1,0 +1,783 @@
+:root {
+    /* Color Palette */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent-red: #8A0303;
+    --border-color: #E0E0E0;
+
+    /* Theme - Dark */
+    --bg-dark: #000000;
+    --text-light: #FFFFFF;
+    --text-light-secondary: #CCCCCC;
+
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --spacing-unit: 8px;
+    --section-padding: 80px 20px;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+section {
+    position: relative;
+    max-width: 100vw;
+}
+
+/* Typography Utilities */
+.section-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--accent-red);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 4rem;
+    font-weight: 300;
+}
+
+.text-light {
+    color: var(--text-light) !important;
+}
+
+/* Header */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    z-index: 10;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    /* Increased to sit above vector heart (z-index 2) */
+}
+
+.hero-title {
+    font-size: 5rem;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+    opacity: 0;
+    font-weight: 700;
+    animation: fadeInUp 1.5s ease forwards 0.5s;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+    line-height: 1.1;
+}
+
+.hero-subtext {
+    font-size: 1.875rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards 1s;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+    color: #fff;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2s;
+    z-index: 2;
+}
+
+.mouse {
+    width: 26px;
+    height: 42px;
+    border: 2px solid var(--text-primary);
+    border-radius: 20px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--accent-red);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 1.5s infinite;
+}
+
+/* Keyframes */
+@keyframes scroll {
+    0% {
+        top: 6px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 20px;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Section 1: The Foundation */
+.section-padding {
+    padding: var(--section-padding);
+}
+
+.foundation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Force 2 columns on mobile */
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .foundation-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 columns on desktop */
+        gap: 2rem;
+    }
+}
+
+.card {
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent-red);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* Section 2: The Vision (Timeline) */
+.dark-theme {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.prediction-letter {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text-light-secondary);
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    /* Mobile alignment */
+    height: 100%;
+    width: 2px;
+    background: var(--accent-red);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 60px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 11px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-dark);
+    border: 3px solid var(--accent-red);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.timeline-phase {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.timeline-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.timeline-content p {
+    color: var(--text-light-secondary);
+}
+
+/* Section 3: Why I Choose You */
+.reasons-grid {
+    display: flex;
+    /* Use Flexbox for centering */
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Center align items */
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.reason-item {
+    text-align: center;
+    padding: 2rem;
+    flex: 1 1 300px;
+    /* Basis of 300px, grow/shrink allowed */
+    max-width: 400px;
+    box-sizing: border-box;
+    /* Ensure padding doesn't break layout */
+}
+
+.reason-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.reason-item h3::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-red);
+    margin: 10px auto 0;
+}
+
+/* Special alignment tweaks for perfect checking */
+.reason-item:nth-last-child(1),
+.reason-item:nth-last-child(2) {
+    /* "add extra padding on the right side to visually force them into a perfect center alignment" */
+    /* This implies shifting content slightly left to balance visual weight if they feel off-center */
+    padding-right: 2.5rem;
+}
+
+.mission-quote {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    color: var(--accent-red);
+    font-weight: 700;
+}
+
+/* Section 4: Our Legacy (Chat) */
+.legacy-section {
+    background-color: var(--bg-dark);
+    /* Black background */
+    color: var(--text-light);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2rem 1rem;
+}
+
+.legacy-section .section-title {
+    background-color: transparent;
+    /* No background */
+    color: var(--accent-red);
+    /* Red Text */
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.chat-interface {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    /* White chat box */
+    padding: 2rem;
+    border-radius: 12px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    /* Allow growth */
+    min-height: 50vh;
+    color: #000;
+    /* Dark text inside chat box */
+}
+
+.identity-toggles {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.identity-btn {
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid #ccc;
+    /* Darker border for white bg */
+    color: #555;
+    /* Dark gray text */
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s ease;
+}
+
+.identity-btn.active {
+    background-color: var(--accent-red);
+    color: #fff;
+    border-color: var(--accent-red);
+    box-shadow: 0 4px 10px rgba(138, 3, 3, 0.4);
+}
+
+.message-feed {
+    flex-grow: 1;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Scrollbar for feed */
+.message-feed::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-feed::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.message.knight {
+    align-self: flex-start;
+    /* Left */
+    background-color: #f0f0f0;
+    /* Light gray */
+    color: #000;
+    border-left: 3px solid var(--accent-red);
+}
+
+.message.kitty {
+    align-self: flex-end;
+    /* Right */
+    background-color: var(--accent-red);
+    color: #fff;
+    border-right: 3px solid #fff;
+}
+
+.message-meta {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#legacy-input {
+    flex-grow: 1;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 10px;
+    border-radius: 4px;
+    resize: none;
+    font-family: var(--font-body);
+}
+
+#legacy-input:focus {
+    outline: none;
+    border-color: var(--accent-red);
+}
+
+.send-btn {
+    background-color: var(--accent-red);
+    color: #fff;
+    border: none;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.send-btn:hover {
+    background-color: #a00404;
+}
+
+.loading-msg {
+    text-align: center;
+    color: var(--text-light-secondary);
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+/* The Vault */
+.vault-section {
+    padding: 4rem 1rem;
+    text-align: center;
+    background: var(--bg-primary);
+    transition: background-color 1.5s ease;
+    min-height: 100vh;
+    /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vault-container h3 {
+    font-size: 5rem;
+    /* Large heading */
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.password-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+input[type="password"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--text-primary);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: var(--accent-red);
+}
+
+.error-msg {
+    color: var(--accent-red);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* Vault Reveal */
+.vault-reveal {
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    max-width: 600px;
+    display: none;
+    /* Initially hidden from layout */
+}
+
+.vault-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.vault-reveal h2 {
+    color: #fff;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.vault-reveal p {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Active State for Vault - changes section appearance */
+.vault-section.unlocked {
+    background-color: var(--accent-red);
+}
+
+.vault-section.unlocked .vault-container {
+    display: none;
+    /* Hide input when unlocked */
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        width: 50%;
+        padding-left: 0;
+        padding-right: 40px;
+        text-align: right;
+        margin-left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+        margin-left: 50%;
+        padding-right: 0;
+        padding-left: 40px;
+        text-align: left;
+    }
+
+    .timeline-dot {
+        left: auto;
+        right: -11px;
+        /* Center on line */
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+        right: auto;
+        left: -11px;
+    }
+
+    .hero-title {
+        font-size: 7rem;
+    }
+
+}
+
+/* Floating Hearts */
+.floating-heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-red);
+    transform: rotate(45deg);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.floating-heart::before,
+.floating-heart::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-red);
+    border-radius: 50%;
+}
+
+.floating-heart::before {
+    top: -8px;
+    left: 0;
+}
+
+.floating-heart::after {
+    top: 0;
+    left: -8px;
+}
+
+@keyframes floatUpSide {
+    0% {
+        transform: translateY(0) rotate(45deg) scale(0.5);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+        transform: translateY(-20px) rotate(45deg) scale(1);
+    }
+
+    80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(45deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Hero Vector Heart */
+.hero-vector-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    /* Between canvas and text(if z-index 2 is used for text, check) */
+    opacity: 0.8;
+}
+
+.vector-heart-path {
+    fill: none;
+    stroke: #FFFFFF;
+    /* White for visibility on dark */
+    stroke-width: 3;
+    stroke-dasharray: 15, 15;
+    /* Dashed line */
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    animation: drawHeart 4s ease-out forwards;
+}
+
+@keyframes drawHeart {
+    from {
+        stroke-dashoffset: 2000;
+        opacity: 0;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
